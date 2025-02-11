@@ -5,7 +5,7 @@ import axios from '../config/axios'
 import { initializeSocket, receiveMessage, sendMessage } from '../config/socket'
 import Markdown from 'markdown-to-jsx'
 import hljs from 'highlight.js';
-import { getWebContainer } from '../config/webcontainer'
+import { getWebContainer } from '../config/webcontainer.js'
 
 
 function SyntaxHighlightedCode(props) {
@@ -98,14 +98,24 @@ const Project = () => {
             <div
                 className='overflow-auto bg-slate-950 text-white rounded-sm p-2'
             >
-                <Markdown
+                {/* <Markdown
                     children={messageObject.text}
                     options={{
                         overrides: {
                             code: SyntaxHighlightedCode,
                         },
                     }}
-                />
+                /> */}
+                <Markdown
+    options={{
+        overrides: {
+            code: SyntaxHighlightedCode,
+        },
+    }}
+>
+    {messageObject.text}
+</Markdown>
+
             </div>)
     }
 
